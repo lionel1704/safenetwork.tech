@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 export default {
   getSiteData: () => ({
@@ -111,6 +112,11 @@ export default {
 
     config.plugins.push(new CompressionPlugin({
       algorithm: 'gzip'
+    }))
+    config.plugins.push(new HtmlWebpackPlugin({
+      minify: {
+        removeScriptTypeAttributes: true,
+      }
     }))
     return config
   },
